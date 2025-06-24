@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Missões - Astro Lume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at 20% 20%, #1a0f3a 0%, #0b0520 30%, #050211 100%);
+      color: #fff;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Efeitos de fundo */
+    .stars {
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #a678f4, transparent),
+        radial-gradient(1px 1px at 130px 80px, #6C4DF6, transparent),
+        radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.6), transparent);
+      background-repeat: repeat;
+      background-size: 200px 100px;
+      animation: twinkle 8s ease-in-out infinite alternate, moveStars 120s linear infinite;
+      z-index: -2;
+    }
+
+    .nebula {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(ellipse at 70% 20%, rgba(108, 77, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 30% 80%, rgba(166, 120, 244, 0.1) 0%, transparent 50%);
+      z-index: -1;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes moveStars {
+      from { transform: translateY(0px); }
+      to { transform: translateY(-100px); }
+    }
+
+    .floating-planets {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .planet {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.4;
+    }
+
+    .planet1 {
+      top: 15%;
+      right: 10%;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle at 30% 30%, #a678f4, #6C4DF6);
+      animation: float 20s ease-in-out infinite, glow 4s ease-in-out infinite alternate;
+    }
+
+    .planet2 {
+      bottom: 20%;
+      left: 5%;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle at 30% 30%, #ffd700, #ff6b35);
+      animation: float 25s ease-in-out infinite reverse, glow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 20px rgba(166, 120, 244, 0.3); }
+      100% { box-shadow: 0 0 40px rgba(166, 120, 244, 0.6); }
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+      backdrop-filter: blur(1px);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 340px;
+      background: linear-gradient(180deg, 
+        rgba(11, 12, 42, 0.95) 0%, 
+        rgba(26, 16, 61, 0.95) 50%,
+        rgba(11, 12, 42, 0.95) 100%);
+      backdrop-filter: blur(10px);
+      border-right: 2px solid rgba(166, 120, 244, 0.3);
+      padding: 30px 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 
+        5px 0 25px rgba(108, 77, 246, 0.4),
+        inset -1px 0 0 rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .sidebar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #a678f4, transparent);
+    }
+
+    .sidebar-header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #a678f4;
+      text-shadow: 0 0 15px #a678f4;
+      margin-bottom: 30px;
+      text-align: center;
+      letter-spacing: 2px;
+      position: relative;
+    }
+
+    .sidebar-header h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #a678f4, transparent);
+    }
+
+    .praticar-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #6C4DF6 0%, #A678F4 50%, #6C4DF6 100%);
+      border: none;
+      border-radius: 15px;
+      padding: 18px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      margin-bottom: 30px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .praticar-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(166, 120, 244, 0.8);
+    }
+
+    .menu-items {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 18px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-item:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(166, 120, 244, 0.3);
+    }
+
+    .menu-item span {
+      font-size: 14px;
+      font-weight: 500;
+      color: #e0e0e0;
+    }
+
+    .exit {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      font-size: 13px;
+      cursor: pointer;
+      color: #999;
+      padding: 10px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .exit:hover {
+      color: #ff6b6b;
+      background: rgba(255, 107, 107, 0.1);
+    }
+
+    /* Main content */
+    .main-content {
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .missao-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .missao-header h2 {
+      font-size: 28px;
+      color: #a678f4;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(166, 120, 244, 0.5);
+    }
+
+    .missao-header p {
+      font-family: 'Poppins', sans-serif;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 16px;
+    }
+
+    .missao-container {
+      background: linear-gradient(135deg, 
+        rgba(108, 77, 246, 0.15) 0%, 
+        rgba(166, 120, 244, 0.1) 100%);
+      border-radius: 20px;
+      padding: 30px;
+      border: 1px solid rgba(166, 120, 244, 0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .missao-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .missao-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(166, 120, 244, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .missao-item-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .missao-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #a678f4, #6C4DF6);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-size: 18px;
+    }
+
+    .missao-item-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: #fff;
+    }
+
+    .missao-item-desc {
+      font-family: 'Poppins', sans-serif;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #a678f4, #6C4DF6);
+      border-radius: 10px;
+      transition: width 0.5s ease;
+    }
+
+    .progress-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 5px;
+      text-align: right;
+    }
+
+    .missao-completed {
+      background: rgba(34, 197, 94, 0.1);
+      border-color: rgba(34, 197, 94, 0.3);
+    }
+
+    .missao-completed .progress-bar {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+    }
+
+    /* Responsividade */
+    @media (max-width: 1024px) {
+      .sidebar {
+        width: 280px;
+      }
+      
+      .main-content {
+        padding: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        padding: 20px;
+        border-right: none;
+        border-bottom: 2px solid rgba(166, 120, 244, 0.3);
+      }
+
+      .sidebar-header h1 {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+
+      .main-content {
+        padding: 20px;
+      }
+
+      .missao-container {
+        padding: 20px;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="nebula"></div>
+  <div class="floating-planets">
+    <div class="planet planet1"></div>
+    <div class="planet planet2"></div>
+  </div>
+
+  <div class="container">
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-header">
+          <h1>Astro Lume</h1>
+        </div>
+        <button class="praticar-btn">
+          <a href="../TelaInicial_liçoes/index.html">PRATICAR</a>
+        </button>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="missao-icon">🎯</div>
+            <span>MISSÕES</span>
+          </div>
+          <div class="menu-item">
+            <div class="missao-icon">👤</div>
+            <a href="../Tela_perfil/index.html"><span>PERFIL</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="exit">
+        <span>🚪</span>
+        <a href="../Login/index.html"><span>Sair da conta</span></a>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="missao-header">
+        <h2>🚀 Missões Diárias</h2>
+        <p>Complete missões para ganhar recompensas e subir de nível</p>
+      </div>
+
+      <div class="missao-container">
+        <div class="missao-item missao-completed">
+          <div class="missao-item-header">
+            <div class="missao-icon">⚡</div>
+            <div class="missao-item-title">Complete uma sessão</div>
+          </div>
+          <div class="missao-item-desc">Realize pelo menos uma lição completa</div>
+          <div class="progress-container">
+            <div class="progress-bar" style="width: 100%"></div>
+          </div>
+          <div class="progress-text">100% concluído</div>
+        </div>
+
+        <div class="missao-item">
+          <div class="missao-item-header">
+            <div class="missao-icon">⏰</div>
+            <div class="missao-item-title">Estude por 10 minutos</div>
+          </div>
+          <div class="missao-item-desc">Acumule tempo de estudo contínuo</div>
+          <div class="progress-container">
+            <div class="progress-bar" style="width: 30%"></div>
+          </div>
+          <div class="progress-text">30% concluído</div>
+        </div>
+
+        <div class="missao-item">
+          <div class="missao-item-header">
+            <div class="missao-icon">🌍</div>
+            <div class="missao-item-title">Complete todas as lições de uma sessão</div>
+          </div>
+          <div class="missao-item-desc">Finalize todas as lições de um módulo</div>
+          <div class="progress-container">
+            <div class="progress-bar" style="width: 0%"></div>
+          </div>
+          <div class="progress-text">0% concluído</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Funções interativas
+    function handlePractice() {
+      alert('🚀 Iniciando sessão de prática! Prepare-se para explorar o universo do conhecimento!');
+    }
+
+    function handleMissions() {
+      alert('🎯 Abrindo painel de missões...');
+    }
+
+    function handleProfile() {
+      alert('👤 Acessando seu perfil de explorador...');
+    }
+
+    function handleExit() {
+      if (confirm('🌌 Tem certeza que deseja sair da sua jornada espacial?')) {
+        alert('👋 Até logo, explorador! Volte em breve para continuar sua aventura!');
+      }
+    }
+
+    // Simulação de progresso em tempo real (demonstração)
+    let tempoEstudado = 30;
+    setInterval(() => {
+      if (tempoEstudado < 100) {
+        tempoEstudado += Math.random() * 2;
+        const progressBar = document.querySelector('.missao-item:nth-child(2) .progress-bar');
+        const progressText = document.querySelector('.missao-item:nth-child(2) .progress-text');
+        if (progressBar && progressText) {
+          const progress = Math.min(tempoEstudado, 100);
+          progressBar.style.width = progress + '%';
+          progressText.textContent = Math.round(progress) + '% concluído';
+        }
+      }
+    }, 5000);
+  </script>
+</body>
+</html>

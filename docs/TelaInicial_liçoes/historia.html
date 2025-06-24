@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Missão Keplérion-7</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: radial-gradient(circle at top, #0b0c2a, #070211);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      color: #a678f4;
+      text-align: center;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px rgba(166, 120, 244, 0.5);
+      letter-spacing: 2px;
+      position: relative;
+    }
+
+    .texto-container {
+      max-width: 800px;
+      margin: 30px auto;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      background: rgba(11, 12, 42, 0.7);
+      padding: 30px;
+      border-radius: 10px;
+      border: 1px solid #a678f4;
+      box-shadow: 0 0 20px rgba(166, 120, 244, 0.3);
+      min-height: 300px;
+      position: relative;
+    }
+
+    .texto {
+      text-align: justify;
+      position: relative;
+      z-index: 1;
+    }
+
+    .texto p {
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .texto p.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .robot-container {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      z-index: 2; /* Garante que o robô fique na frente */
+      transition: all 1.5s ease-out;
+      opacity: 0;
+      transform: translateX(50px);
+    }
+
+    .robot-container.visible {
+      opacity: 0.9;
+      transform: translateX(0);
+    }
+
+    .robot-image {
+      max-width: 200px;
+      animation: flutuar 5s ease-in-out infinite;
+      filter: drop-shadow(0 0 15px rgba(166, 120, 244, 0.7));
+    }
+
+    .progresso-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(166, 120, 244, 0.2);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    .progresso-barra {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #a678f4, #6a3093);
+      transition: width 0.3s ease;
+    }
+
+    @keyframes flutuar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .detalhe-cosmos {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: piscar-estrela 5s infinite alternate;
+    }
+
+    @keyframes piscar-estrela {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.9; }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .texto-container {
+        padding: 20px;
+        font-size: 1rem;
+        min-height: 200px;
+      }
+      
+      .robot-container {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin-top: 30px;
+        transform: none;
+      }
+      
+      .robot-image {
+        max-width: 150px;
+      }
+      
+      .robot-container.visible {
+        transform: none;
+      }
+    }
+    button{
+       width: 200px;
+      background: linear-gradient(135deg, #6C4DF6 0%, #A678F4 50%, #6C4DF6 100%);
+      border: none;
+      border-radius: 15px;
+      padding: 18px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      margin-bottom: 30px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    button:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(166, 120, 244, 0.8);
+    }
+    a{
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="progresso-container">
+    <div class="progresso-barra" id="progressoBarra"></div>
+  </div>
+  
+  <div class="container">
+    <h1 id="titulo"></h1>
+    
+    <div class="texto-container">
+      <div class="texto" id="texto-missao">
+        <!-- O conteúdo será inserido via JavaScript -->
+      </div>
+      
+      <div class="robot-container" id="robo-container">
+      </div>
+    </div>
+  </div>
+  <a href="../TelaInicial_liçoes/index.html"><button>Voltar</button></a>
+
+  <script>
+    // Conteúdo da história dividido em partes
+    const partesHistoria = [
+      "Em uma galáxia distante, além dos aglomerados estelares conhecidos, o enigmático planeta Keplérion-7 guarda o mais bem protegido segredo cósmico - perdido há milênios nos anais do tempo.",
+      "Você foi especialmente selecionado entre os melhores exploradores espaciais para esta missão crítica: desvendar o lendário Código do Cosmo - uma complexa sequência de sinais quânticos e mensagens holográficas deixadas pela avançada civilização dos Arcontes, extinta há eras.",
+      "Sua jornada começa agora, viajante interestelar. Os destinos de múltiplas civilizações dependem de seu sucesso. O que parecem ser simples códigos escondem verdades fundamentais sobre a estrutura do universo.",
+      "Prepare-se para decifrar padrões cósmicos, resolver enigmas multidimensionais e desbloquear conhecimentos que desafiam as leis da física conhecida. A nave de reconhecimento Órion está pronta para te auxiliar nesta empreitada."
+    ];
+
+    // Elementos DOM
+    const textoMissao = document.getElementById('texto-missao');
+    const roboContainer = document.getElementById('robo-container');
+    const titulo = document.getElementById('titulo');
+    const progressoBarra = document.getElementById('progressoBarra');
+    let parteAtual = 0;
+
+    // Função para atualizar a barra de progresso
+    function atualizarProgresso(percentual) {
+      progressoBarra.style.width = `${percentual}%`;
+    }
+
+    // Função para digitar texto
+    function digitarTexto(texto, elemento, callback) {
+      let i = 0;
+      elemento.innerHTML = '';
+      const comprimentoTotal = texto.length;
+      const progressoPorLetra = 100 / (partesHistoria.length * comprimentoTotal);
+      let progressoAtual = parteAtual * (100 / partesHistoria.length);
+      
+      const intervalo = setInterval(() => {
+        if (i < texto.length) {
+          elemento.innerHTML += texto.charAt(i);
+          i++;
+          
+          // Atualiza o progresso de forma suave
+          progressoAtual += progressoPorLetra;
+          atualizarProgresso(progressoAtual);
+        } else {
+          clearInterval(intervalo);
+          if (callback) callback();
+        }
+      }, 20);
+    }
+
+    // Função para mostrar próxima parte automaticamente
+    function mostrarProximaParte() {
+      if (parteAtual < partesHistoria.length) {
+        const paragrafo = document.createElement('p');
+        textoMissao.appendChild(paragrafo);
+        digitarTexto(partesHistoria[parteAtual], paragrafo, () => {
+          setTimeout(() => {
+            paragrafo.classList.add('visible');
+            parteAtual++;
+            
+            // Chama a próxima parte automaticamente após um delay
+            if (parteAtual < partesHistoria.length) {
+              setTimeout(mostrarProximaParte, 1500);
+            } else {
+              // Mostra o robô quando toda a história for exibida
+              roboContainer.classList.add('visible');
+              atualizarProgresso(100);
+              
+              // Esconde a barra de progresso após 3 segundos
+              setTimeout(() => {
+                document.querySelector('.progresso-container').style.opacity = '0';
+              }, 3000);
+            }
+          }, 300);
+        });
+      }
+    }
+
+    // Iniciar a animação automática
+    function iniciarAnimacao() {
+      // Digitar o título primeiro
+      digitarTexto("Missão Keplérion-7: O Código do Cosmo", titulo, () => {
+        setTimeout(mostrarProximaParte, 1000);
+      });
+    }
+
+    // Adiciona estrelas de fundo dinâmicas
+    function criarEstrelas() {
+      const body = document.body;
+      const quantidade = 150;
+      
+      for (let i = 0; i < quantidade; i++) {
+        const estrela = document.createElement('div');
+        estrela.classList.add('detalhe-cosmos');
+        
+        estrela.style.left = `${Math.random() * 100}vw`;
+        estrela.style.top = `${Math.random() * 100}vh`;
+        
+        const tamanho = Math.random() * 3;
+        estrela.style.width = `${tamanho}px`;
+        estrela.style.height = `${tamanho}px`;
+        
+        estrela.style.opacity = Math.random() * 0.8;
+        estrela.style.animationDelay = `${Math.random() * 5}s`;
+        
+        body.appendChild(estrela);
+      }
+    }
+    
+    // Inicia tudo quando a página carrega
+    window.onload = () => {
+      criarEstrelas();
+      setTimeout(iniciarAnimacao, 500);
+    };
+  </script>
+</body>
+</html>

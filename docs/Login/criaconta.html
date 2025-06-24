@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta - Astro Lume</title>
+    <link rel="stylesheet" href="criaconta.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars-container" id="stars-container"></div>
+    <div class="transition-overlay" id="transitionOverlay"></div>
+
+    <header>
+        <div class="logo">
+            <img src="logo astrolume (png) 1.png" alt="Astro Lume">
+        
+        </div>
+    </header>
+
+    <main class="signup-container">
+        <div class="signup-content">
+            <div class="signup-illustration">
+                <div class="rocket-container">
+                    <img src="foquete.png" alt="Foguete" class="rocket">
+                    <div class="exhaust"></div>
+                </div>
+                <div class="planet"></div>
+            </div>
+            
+            <div class="signup-form">
+                <h1>INICIAR <span class="gradient-text">JORNADA</span></h1>
+                <p class="subtitle">Prepare-se para decolar na sua aventura de aprendizado</p>
+                
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" placeholder="Seu nome" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="seu@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" placeholder="Crie uma senha" required>
+                        <div class="password-strength">
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirmar Senha</label>
+                        <input type="password" id="confirmPassword" placeholder="Repita sua senha" required>
+                    </div>
+                    
+                   
+                    <div class="signup-links">
+                        <p>Já tem uma conta? <a href="../Login/index.html" id="loginLink">Entrar</a></p>
+                    </div>
+                </form>
+                 <button class="btn btn-primary" id="launchBtn">
+                        <span class="btn-text">
+                           <a href="../TelaInicial_liçoes/index.html">DECOLAR</a>
+                        </span>
+                        <span class="btn-icon">🚀</span>
+                    </button>
+                    
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>Aprender pode ser uma aventura – e a Astro Lume guia essa jornada.</p>
+            <p>© 2025 Astro Lume – Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="criaconta.js"></script>
+</body>
+</html>

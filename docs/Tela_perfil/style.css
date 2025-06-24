@@ -1,0 +1,289 @@
+/* RESET E FONTES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top, #0b0c2a 0%, #070211 100%);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 320px;
+    background: linear-gradient(180deg, #0b0c2a 0%, #1A103D 100%);
+    padding: 30px 25px;
+    color: #fff;
+    box-shadow: 5px 0 20px rgba(98, 0, 234, 0.4);
+    border-right: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #a678f4;
+}
+
+.menu-section h2 {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 20px 0 10px;
+    letter-spacing: 1.5px;
+}
+
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: none;
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(8px) scale(1.02);
+    box-shadow: 0 0 10px rgba(166, 120, 244, 0.6);
+}
+
+.menu-item span {
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.icon.no-filter {
+    filter: none;
+}
+
+.info-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 15px;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* BOTÃO PRATICAR */
+.praticar-btn {
+    display: inline-block;
+    width: 100%;
+    background: linear-gradient(45deg, #6C4DF6, #A678F4);
+    border: none;
+    border-radius: 12px;
+    padding: 15px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(166, 120, 244, 0.6);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.praticar-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(166, 120, 244, 0.8);
+}
+
+/* ÁREA DE PERFIL */
+.user-section {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('imagens/space-bg.png') no-repeat center/cover;
+}
+
+.user-profile {
+    background: rgba(11, 12, 42, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(166, 120, 244, 0.4);
+    position: relative;
+}
+
+.edit-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(45deg, #a678f4, #6c4df6);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(166, 120, 244, 0.7);
+}
+
+.edit-icon img {
+    width: 14px;
+    height: 14px;
+    filter: brightness(0) invert(1);
+}
+
+.user-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #6C4DF6;
+    margin-bottom: 15px;
+    box-shadow: 0 0 10px rgba(166, 120, 244, 0.7);
+}
+
+.user-profile h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #a678f4;
+}
+
+.member-since {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 20px;
+}
+
+.level-container {
+    background: rgba(166, 120, 244, 0.1);
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-bottom: 25px;
+}
+
+.level {
+    font-size: 14px;
+    color: #a678f4;
+    font-weight: 500;
+}
+
+.logout-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+
+.logout-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.8);
+}
+
+.logout-btn img {
+    width: 18px;
+    height: 18px;
+}
+
+/* ========== RESPONSIVIDADE ========== */
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: none;
+    }
+
+    .user-section {
+        padding: 20px;
+    }
+
+    .user-profile {
+        max-width: 100%;
+    }
+
+    .edit-icon {
+        top: 15px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar-header h1 {
+        font-size: 18px;
+    }
+
+    .menu-item {
+        padding: 10px 15px;
+    }
+
+    .menu-item span {
+        font-size: 12px;
+    }
+
+    .praticar-btn {
+        font-size: 13px;
+        padding: 12px 16px;
+    }
+
+    .user-profile h3 {
+        font-size: 18px;
+    }
+
+    .logout-btn {
+        font-size: 13px;
+        padding: 8px 14px;
+    }
+
+    .logout-btn img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .user-avatar {
+        width: 100px;
+        height: 100px;
+    }
+}

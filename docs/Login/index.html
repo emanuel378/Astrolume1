@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Astro Lume</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars-container" id="stars-container"></div>
+
+    <header>
+        <div class="logo">
+            <img src="logo astrolume (png) 1.png" alt="Astro Lume">
+          
+        </div>
+    </header>
+
+    <main class="login-container">
+        <div class="login-content">
+            <div class="login-illustration">
+                <img src="Rôbo Órion com cara de acertoPNG 1.png" alt="Astronauta" class="astronaut">
+                <div class="planet"></div>
+            </div>
+            
+            <div class="login-form">
+                <h1>ACESSE SUA <span class="gradient-text">JORNADA</span></h1>
+                <p class="subtitle">Continue sua aventura de aprendizado</p>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="seu@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" placeholder="Sua senha" required>
+                    </div>
+                    
+                    <button class="btn btn-primary" >
+                        <span class="btn-text" ><a href="/TelaInicial_liçoes/index.html">ENTRAR NA NAVE</a></span>
+                        <span class="btn-icon">🚀</span> 
+                    </button>
+                    
+                    <div class="login-links">
+                        <a href="../Redefinir_senha/redefinir.html">Esqueci minha senha</a>
+                        <a href="../Login/criaconta.html">Criar nova conta</a>
+                    </div>
+                </form>
+                
+                <div class="social-login">
+                    <p>Ou entre com:</p>
+                    <div class="social-icons">
+                        <button class="social-btn google">G</button>
+                        <button class="social-btn facebook">F</button>
+                        <button class="social-btn apple">A</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>Aprender pode ser uma aventura – e a Astro Lume guia essa jornada.</p>
+            <p>© 2025 Astro Lume – Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

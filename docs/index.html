@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro Lume</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --space-dark: #0B0D21;
+            --space-purple: #9C6EFF;
+            --space-blue: #4A90E2;
+            --space-pink: #FF2D75;
+            --space-yellow: #FFD166;
+            --space-light: #E2F3F5;
+            --neon-blue: #00F5FF;
+            --neon-pink: #FF10F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--space-dark);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(11, 13, 33, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(156, 110, 255, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, var(--space-purple), var(--neon-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--neon-blue);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            padding: 100px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--space-light), var(--space-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--space-yellow);
+            font-weight: 500;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--space-purple), var(--space-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--space-purple), var(--space-blue));
+            color: white;
+            box-shadow: 0 0 20px rgba(156, 110, 255, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(156, 110, 255, 0.8);
+        }
+
+        .features {
+            padding: 80px 40px;
+            background: rgba(11, 13, 33, 0.5);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(156, 110, 255, 0.2);
+            border-bottom: 1px solid rgba(156, 110, 255, 0.2);
+        }
+
+        .features h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--space-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(20, 22, 50, 0.6);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(156, 110, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(156, 110, 255, 0.3);
+            border-color: var(--space-purple);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                transparent,
+                rgba(156, 110, 255, 0.1)
+            );
+            transform: rotate(30deg);
+        }
+
+        .feature-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--space-purple);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .about {
+            padding: 80px 40px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 0 40px rgba(156, 110, 255, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--space-light);
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .highlight-blue {
+            color: var(--space-blue);
+            font-weight: 500;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        footer {
+            background: rgba(11, 13, 33, 0.9);
+            padding: 60px 40px 30px;
+            border-top: 1px solid rgba(156, 110, 255, 0.2);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-column h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--space-purple);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--space-yellow);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(156, 110, 255, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            nav ul {
+                margin-top: 20px;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about {
+                flex-direction: column;
+                padding: 60px 20px;
+            }
+        }
+        html{
+             scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars-container" id="stars-container"></div>
+
+    <header>
+        <div class="logo">
+            <img src="logo astrolume (png) 1.png" alt="Astro Lume">
+           
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobrenos">Sobre nós</a></li>
+                <li><a href="#liçoes">Lições</a></li>
+                <li><a href="#">Progresso</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="inicio">
+            <h1>BEM-VINDO(A) AO <br>ASTRO LUME</h1>
+            <p><span class="highlight">Astro Lume</span> é uma plataforma de microaprendizado gamificado que torna a <span class="gradient-text">educação</span> mais acessível, divertida e inclusiva, em qualquer lugar e a qualquer hora.</p>
+            <a href="../Login/index.html" class="btn btn-primary">INICIAR JORNADA</a>
+        </section>
+
+        
+        <section class="features" id="liçoes">
+            <h2>COMO FUNCIONA?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>ESCOLHA UMA TRILHA</h3>
+                    <p>Escolha um tema, como Matemática ou Ciências. Cada trilha tem lições curtas em sequência.</p>
+                </div>
+                <div class="feature-card" >
+                    <h3>APRENDA JOGANDO</h3>
+                    <p>Histórias curtas, desafios rápidos e tentativas ilimitadas com dicas e reforço positivo.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>PROGRIDA NO SEU RITMO</h3>
+                    <p>Ganhe pontos, desbloqueie novas histórias e acompanhe seu progresso com gráficos e insígnias.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="sobrenos">
+            <div class="about-image">
+                <img src="astronauta na lua.png" alt="Astronauta na Lua">
+            </div>
+            <div class="about-content">
+                <h2>SOBRE NÓS</h2>
+                <p>Nosso propósito está intrinsecamente alinhado ao Objetivo de Desenvolvimento Sustentável (ODS) 4 – <span class="highlight-blue">Educação de Qualidade</span>, integrante da Agenda 2030 da ONU.</p>
+                <p>Buscamos "garantir a educação inclusiva, equitativa e de qualidade, promovendo oportunidades de aprendizagem contínua ao longo da vida para todas as pessoas".</p>
+                <p>Nosso compromisso é contribuir ativamente para a construção de um sistema educacional acessível, diverso e capaz de capacitar indivíduos de todas as idades e origens.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>Início</h3>
+                <ul>
+                    <li><a href="#sobrenos">Sobre nós</a></li>
+                    <li><a href="#liçoes">Lições</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contatos</h3>
+                <ul>
+                    <li>(56) 88 99381-1715</li>
+                    <li>(55) 88 99298-9094</li>
+                    <li>(55) 88 99299-7724</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Equipe</h3>
+                <ul>
+                    <li>Hudson Moraes</li>
+                    <li>Emanuel Messias</li>
+                    <li>Pedro Henrique</li>
+                    <li>Henzo Fontinele</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Termos</h3>
+                <ul>
+                    <li><a href="#">Políticas</a></li>
+                    <li><a href="#">Privacidade</a></li>
+                    <li>Ilustrações por Astro Lume</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Aprender pode ser uma aventura – e a Astro Lume guia essa jornada.</p>
+            <p>© 2025 Astro Lume – Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Criação das estrelas animadas
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('stars-container');
+            const starCount = 200;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Tamanho aleatório entre 1 e 3 pixels
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Posição aleatória
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Duração e delay aleatórios para a animação
+                const duration = Math.random() * 5 + 3;
+                star.style.setProperty('--duration', `${duration}s`);
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(star);
+            }
+        });
+    </script>
+</body>
+</html>

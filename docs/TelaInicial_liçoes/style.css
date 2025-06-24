@@ -1,0 +1,442 @@
+/* FONTE GERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(circle at top, #0b0c2a 0%, #070211 100%);
+  color: white;
+  overflow-x: hidden;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Layout */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ========== SIDEBAR FIXA COM ORBITRON ========== */
+.sidebar {
+  width: 320px;
+  background: linear-gradient(180deg, #0b0c2a 0%, #1A103D 100%);
+  padding: 30px 25px;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  box-shadow: 5px 0 20px rgba(98, 0, 234, 0.4);
+  border-right: 2px solid rgba(255, 255, 255, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+.sidebar-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #a678f4;
+}
+
+.menu-section h2 {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 20px 0 10px;
+  letter-spacing: 1.5px;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(8px) scale(1.02);
+  box-shadow: 0 0 10px rgba(166, 120, 244, 0.6);
+}
+
+.menu-item span {
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.icon.no-filter {
+  filter: none;
+}
+
+.praticar-btn {
+  display: inline-block;
+  width: 100%;
+  background: linear-gradient(45deg, #6C4DF6, #A678F4);
+  border: none;
+  border-radius: 12px;
+  padding: 15px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(166, 120, 244, 0.6);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.praticar-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(166, 120, 244, 0.8);
+}
+
+/* ========== CAMINHO DAS ESTRELAS COM POPLI ========== */
+.content {
+  margin-left: 320px;
+  margin-right: auto;
+  padding: 40px 40px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  max-width: calc(100% - 620px);
+  box-sizing: border-box;
+}
+
+.historia {
+  background: linear-gradient(to right, #4a90e2, #5a9ee8);
+  border-radius: 20px;
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  color: white;
+  max-width: 700px;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.historia h3 {
+  font-size: 18px;
+  color: #aaa;
+}
+
+.historia h1 {
+  font-size: 26px;
+  color: #fff;
+}
+
+/* Caminho das estrelas - Versão melhorada */
+.caminho {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  padding: 20px 0;
+}
+
+.estrela {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-left: calc(50% - 60px);
+}
+
+.estrela img {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 8px rgba(166, 120, 244, 0.5));
+}
+
+.conteudo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.conteudo img {
+  width: 40px;
+  height: 40px;
+}
+
+/* Desalinhamento orgânico */
+.estrela:nth-child(1) { transform: translateX(-18px) rotate(-3deg); }
+.estrela:nth-child(2) { transform: translateX(15px) rotate(2deg); }
+.estrela:nth-child(3) { transform: translateX(-12px) rotate(-4deg); }
+.estrela:nth-child(4) { transform: translateX(10px) rotate(1deg); }
+.estrela:nth-child(5) { transform: translateX(-15px) rotate(-2deg); }
+.estrela:nth-child(6) { transform: translateX(12px) rotate(3deg); }
+.estrela:nth-child(7) { transform: translateX(-10px) rotate(-1deg); }
+.estrela:nth-child(8) { transform: translateX(18px) rotate(4deg); }
+.estrela:nth-child(9) { transform: translateX(-8px) rotate(-2deg); }
+.estrela:nth-child(10) { transform: translateX(10px) rotate(1deg); }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.estrela:hover {
+  animation: float 2.5s ease-in-out infinite;
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(166, 120, 244, 0.8);
+  z-index: 10;
+}
+
+.icone-historia {
+  width: 48px;
+  height: 48px;
+}
+
+/* Painel lateral */
+.painel-lateral {
+  position: fixed;
+  top: 100px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  z-index: 100;
+  max-width: 280px;
+  width: 100%;
+}
+
+.bloco {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(6px);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 20px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.bloco h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+.bloco .tarefa,
+.info-user p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.tarefa {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tarefa img {
+  width: 32px;
+  height: 32px;
+}
+
+.topo-usuario {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #a678f4;
+}
+
+.info-user p {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ========== RESPONSIVIDADE ========== */
+@media (max-width: 1200px) {
+  .content {
+    max-width: calc(100% - 540px);
+  }
+
+  .painel-lateral {
+    right: 15px;
+    max-width: 240px;
+  }
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    width: 260px;
+    padding: 25px 20px;
+  }
+
+  .content {
+    margin-left: 260px;
+    max-width: calc(100% - 260px - 40px);
+    padding: 30px;
+  }
+
+  .painel-lateral {
+    right: 10px;
+    max-width: 220px;
+  }
+
+  .historia {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .historia h1 {
+    font-size: 22px;
+  }
+
+  .historia h3 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    box-shadow: none;
+    border-right: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 25px 20px;
+    max-width: 100%;
+  }
+
+  .painel-lateral {
+    position: relative;
+    top: auto;
+    right: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+    padding: 10px 0;
+    gap: 15px;
+  }
+
+  .bloco {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .estrela {
+    width: 100px;
+    height: 100px;
+  }
+
+  .conteudo img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar-header h1 {
+    font-size: 18px;
+  }
+
+  .menu-item span {
+    font-size: 12px;
+  }
+
+  .praticar-btn {
+    font-size: 13px;
+    padding: 12px 16px;
+  }
+
+  .historia {
+    padding: 15px 20px;
+  }
+
+  .historia h1 {
+    font-size: 20px;
+  }
+
+  .conteudo {
+    font-size: 14px;
+  }
+
+  .bloco h3 {
+    font-size: 16px;
+  }
+
+  .tarefa {
+    font-size: 13px;
+  }
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .icone-historia {
+    width: 40px;
+    height: 40px;
+  }
+}

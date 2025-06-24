@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redefinir Senha Futurista</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="login-section">
+            <div class="img-logo">
+                <img src="Imagens/LOGO.png" alt="Logo Futurista" />
+            </div>
+
+            <h1>Redefina sua senha</h1>
+            <p class="subtitle">Acesse o futuro</p>
+
+            <form class="formulario">
+                <div class="input-group">
+                    <img src="Imagens/USUARIO.png" alt="Usuário" />
+                    <input type="text" id="nome" placeholder="Seu nome" required />
+                </div>
+
+                <div class="input-group">
+                    <img src="Imagens/SENHA.png" alt="Senha" />
+                    <input type="password" id="novaSenha" placeholder="Nova senha" required minlength="6" />
+                </div>
+
+                <div class="input-group">
+                    <img src="Imagens/SENHA.png" alt="Confirmar Senha" />
+                    <input type="password" id="confirmarSenha" placeholder="Confirmar senha" required />
+                </div>
+            </form>
+
+            <!-- Botão como link simples, que já redireciona sem validação -->
+            <a href="../Login/index.html" class="btn-redefinir">
+                <span class="btn-text">Redefinir</span>
+                <span class="btn-glow"></span>
+            </a>
+        </div>
+
+        <div class="robot-section">
+            <img src="Imagens/ROBO.png" alt="Robô Futurista" class="floating-robot" />
+            <div class="robot-glow"></div>
+            <div class="connection-lines">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+    document.querySelector('.btn-redefinir').addEventListener('click', function (e) {
+        const nome = document.getElementById('nome').value.trim();
+        const novaSenha = document.getElementById('novaSenha').value;
+        const confirmarSenha = document.getElementById('confirmarSenha').value;
+
+        if (!nome || !novaSenha || !confirmarSenha) {
+            alert('Por favor, preencha todos os campos.');
+            e.preventDefault();
+            return;
+        }
+
+        if (novaSenha.length < 6) {
+            alert('A senha deve ter pelo menos 6 caracteres.');
+            e.preventDefault();
+            return;
+        }
+
+        if (novaSenha !== confirmarSenha) {
+            alert('As senhas não coincidem.');
+            e.preventDefault();
+            return;
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Missão Keplérion-7</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: radial-gradient(circle at top, #0b0c2a, #070211);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      gap: 60px;
+      position: relative;
+      z-index: 1;
+    }
+    .question-box {
+      background: linear-gradient(to bottom right, #2e2a90, #6835a6);
+      border-radius: 20px;
+      padding: 30px;
+      width: 400px;
+      box-shadow: 0 0 25px rgba(166, 120, 244, 0.4);
+      text-align: center;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: #a678f4;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(166, 120, 244, 0.6);
+    }
+    .question {
+      font-size: 16px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .options button {
+      display: block;
+      width: 100%;
+      background: #fff;
+      color: #000;
+      padding: 12px 18px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 15px;
+    }
+    .options button:hover { background: #ffcc00; transform: scale(1.03); }
+    .options button.correto { background: #00c774; color: #fff; }
+    .options button.errado { background: #ff4f4f; color: #fff; }
+    .options button.brilho {
+      box-shadow: 0 0 15px 5px rgba(0, 255, 153, 0.6);
+      animation: brilho-certo 1s ease-in-out;
+    }
+    @keyframes brilho-certo {
+      0% { box-shadow: 0 0 0 0 rgba(0, 255, 153, 0.6); }
+      50% { box-shadow: 0 0 15px 10px rgba(0, 255, 153, 0.9); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 255, 153, 0.6); }
+    }
+    .feedback {
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 18px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+    .feedback.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .feedback.acerto {
+      color: #00ffae;
+      text-shadow: 0 0 10px rgba(0, 255, 174, 0.6);
+    }
+    .feedback.erro {
+      color: #ff4f4f;
+      text-shadow: 0 0 10px rgba(255, 79, 79, 0.6);
+    }
+    .button {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .button a, .button button {
+      background: linear-gradient(135deg, #6C4DF6 0%, #A678F4 100%);
+      padding: 10px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .button a:hover, .button button:hover {
+      background: #8f5df4;
+      box-shadow: 0 0 12px rgba(166, 120, 244, 0.7);
+      transform: translateY(-2px);
+    }
+    #explicacao-resposta {
+      margin-top: 10px;
+      font-size: 15px;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+    #explicacao-resposta.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="question-box">
+      <h1>Missão Keplérion-7: O Código do Cosmo</h1>
+      <div class="question">
+        Você precisa de 30 litros de combustível. Já colocou 18 litros.<br>
+        <strong>Quantos litros faltam?</strong>
+      </div>
+      <div class="options">
+        <button data-correct="true">A) 12</button>
+        <button>B) 10</button>
+        <button>C) 15</button>
+      </div>
+
+      <!-- Botão como resolver -->
+      <div class="button">
+        <a href="explicação.html"><button>Como resolver?</button></a>
+      </div>
+
+      <div class="feedback" id="feedback-msg"></div>
+      <div class="feedback" id="explicacao-resposta"></div>
+
+      <div class="button" id="botoes-finais" style="display: none;">
+        <a href="index.html">Voltar</a>
+        <a href="explicação2.html">Continuar</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const botoes = document.querySelectorAll('.options button');
+    const feedback = document.getElementById('feedback-msg');
+    const botoesFinais = document.getElementById('botoes-finais');
+    const explicacao = document.getElementById('explicacao-resposta');
+
+    botoes.forEach(botao => {
+      botao.addEventListener('click', () => {
+        if (document.querySelector('.options').classList.contains('respondido')) return;
+        document.querySelector('.options').classList.add('respondido');
+
+        const correto = botao.dataset.correct === "true";
+
+        if (correto) {
+          botao.classList.add('correto', 'brilho');
+          botao.innerHTML += ' ✅';
+          feedback.textContent = "Você acertou! 🚀";
+          feedback.classList.add('acerto', 'visible');
+
+          localStorage.setItem('historia1_completa', 'true');
+        } else {
+          botao.classList.add('errado');
+          botao.innerHTML += ' ❌';
+          feedback.textContent = "Resposta incorreta!";
+          feedback.classList.add('erro', 'visible');
+        }
+
+        botoes.forEach(b => {
+          b.disabled = true;
+          if (b !== botao && b.dataset.correct === "true") {
+            b.classList.add('correto');
+          }
+        });
+
+        botoesFinais.style.display = 'flex';
+      });
+    });
+
+    function mostrarExplicacao() {
+      explicacao.textContent = "Subtraímos 18 de 30: 30 - 18 = 12.";
+      explicacao.classList.add('visible', 'acerto');
+    }
+  </script>
+</body>
+</html>

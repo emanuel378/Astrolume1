@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Explicação - Divisão</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #0b0c2a 0%, #070211 100%);
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.03);
+      border: 2px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 0 20px rgba(166, 120, 244, 0.2);
+      backdrop-filter: blur(4px);
+      z-index: 2;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      color: #A678F4;
+      margin-bottom: 25px;
+      text-align: center;
+      text-shadow: 0 0 8px rgba(166, 120, 244, 0.5);
+    }
+
+    p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #e0e0e0;
+    }
+
+    .exemplo {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 10px;
+      box-shadow: 0 0 10px rgba(166, 120, 244, 0.2);
+    }
+
+    .exemplo strong {
+      color: #7cd6ff;
+    }
+
+    .resultado {
+      font-size: 20px;
+      color: #00FFAA;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .emoji {
+      font-size: 24px;
+      margin-right: 6px;
+    }
+
+    .estrela {
+      position: absolute;
+      background: white;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: piscar 4s infinite alternate;
+    }
+
+    @keyframes piscar {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    button {
+      width: 200px;
+      background: linear-gradient(135deg, #6C4DF6 0%, #A678F4 50%, #6C4DF6 100%);
+      border: none;
+      border-radius: 15px;
+      padding: 18px 20px;
+      font-size: 16px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(166, 120, 244, 0.4);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(166, 120, 244, 0.8);
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>✨ O que é Divisão?</h1>
+    <p>
+      A <strong>divisão</strong> serve para repartir ou descobrir quantas vezes algo cabe em outra coisa.
+    </p>
+    <p>
+Por exemplo: Se você tem 12 moedas cósmicas para dividir entre 3 tripulantes da nave, você faz:
+    <div class="exemplo">
+      <p><span class="emoji">🪙</span><strong>12 ÷ 3 = 4</strong></p>
+      <p class="resultado">Cada tripulante receberá 4 moedas.</p>
+    </div>
+
+    <p>Outro exemplo com litros:</p>
+    <div class="exemplo">
+      <p>Você tem <strong>20</strong> litros de água e quer colocar igualmente em<strong>5</strong> recipientes.</p>
+      <p>Conta: <strong>20 ÷ 5</strong></p>
+      <p class="resultado">Você terá 4 unidades.</p>
+    </div>
+  </div>
+
+  <div class="btn-container">
+    <a href="../TelaInicial_liçoes/index.html"><button>Voltar</button></a>
+  </div>
+
+  <!-- Estrelas animadas no fundo -->
+  <script>
+    const estrelasQtd = 120;
+    for (let i = 0; i < estrelasQtd; i++) {
+      const estrela = document.createElement('div');
+      estrela.classList.add('estrela');
+      estrela.style.top = Math.random() * 100 + 'vh';
+      estrela.style.left = Math.random() * 100 + 'vw';
+      estrela.style.width = Math.random() * 2 + 1 + 'px';
+      estrela.style.height = estrela.style.width;
+      estrela.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(estrela);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Astro Lume</title>
+  <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h1>Astro Lume</h1>
+      </div>
+      <div class="menu-section">
+        <button class="praticar-btn">PRATICAR</button>
+        <div class="menu-items">
+          <div class="menu-item">
+            <img src="imagens/bau.png" alt="Missões" class="icon no-filter">
+            <a href="../telamissão/index.html" target='_blank'><span>MISSÕES</span></a>
+          </div>
+          <div class="menu-item">
+            <img src="imagens/homempapel.png" alt="Perfil" class="icon no-filter">
+            <a href="../Tela_perfil/index.html" target="_blank"><span>PERFIL</span></a>         </div>
+        </div>
+        <h2>ESTATÍSTICAS</h2>
+        <div class="menu-items">
+          <div class="menu-item">
+            <img src="imagens/diasseguidos.png" alt="Dias" class="icon">
+            <span>0 DIAS SEGUIDOS</span>
+          </div>
+          <div class="menu-item">
+            <img src="imagens/conquistas.png" alt="Conquistas" class="icon">
+            <span>2 CONQUISTAS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Caminho das estrelas -->
+    <div class="content">
+    <div class="historia">
+  <img src="imagens/anotação.png" alt="ícone" class="icone-historia" />
+  <div>
+    <h3>HISTÓRIA 1, LIÇÃO 1</h3>
+    <h1>Missão Keplérion-7: O Código do Cosmo</h1>
+  </div>
+</div>
+
+      <div class="caminho">
+        <a href="historia.html">
+        <div class="estrelas">
+        <div class="estrela"><img src="imagens/star.png"><div class="conteudo">⭐</div></div>
+        </div></a>
+        <a href="explicação.html">
+        
+          <div class="estrela"><img src="imagens/star.png"><div class="conteudo"><img src="imagens/livrodentrostr.png" alt=""></div></div></a>
+       <a href="questão.html"> <div class="estrela"><img src="imagens/star.png"><div class="conteudo">1</div></div></a>
+        <a href="explicação2.html"><div class="estrela"><img src="imagens/star.png"><div class="conteudo"><img src="imagens/livrodentrostr.png" alt=""></div></div></a>
+        <a href="questão2.html"><div class="estrela"><img src="imagens/star.png"><div class="conteudo">2</div></div></a>
+       <a href="explicação3.html"> <div class="estrela"><img src="imagens/star.png"><div class="conteudo"><img src="imagens/livrodentrostr.png" alt=""></div></div></a>
+       <a href="questão3.html"> <div class="estrela"><img src="imagens/star.png"><div class="conteudo">3</div></div></a>
+        <a href="explicação4.html"><div class="estrela"><img src="imagens/star.png"><div class="conteudo"><img src="imagens/livrodentrostr.png" alt=""></div></div></a>
+        <a href="questão4.html"><div class="estrela"><img src="imagens/star.png"><div class="conteudo">4</div></div></a>
+       <a href="prova.html"> <div class="estrela"><img src="imagens/star.png"><div class="conteudo"><img src="imagens/prova.png" alt=""></div></div></a>
+      </div>
+    </div>
+
+   <div class="painel-lateral">
+  <!-- Bloco Usuário -->
+  <div class="bloco painel-usuario">
+    <div class="topo-usuario">
+      <img src="Imagens/usuario.png" alt="Usuário" class="avatar">
+      <div class="info-user">
+        <p><strong>Nível:</strong> 0</p>
+        <p><strong>Sequência:</strong> ⭐ 0 dias</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bloco Missões -->
+  <div class="bloco painel-missoes">
+    <h3>Missões</h3>
+    <div class="tarefa">
+      <img src="Imagens/estrela_rindo.png" alt="">
+      <span>Complete uma história</span>
+      <img src="Imagens/errado.png" alt="">
+    </div>
+    <div class="tarefa">
+      <img src="Imagens/estrela_rindo.png" alt="">
+      <span>Faça três lições</span>
+      <img src="Imagens/errado.png" alt="">
+    </div>
+  </div>
+
+  <!-- Bloco Conquistas -->
+  <div class="bloco painel-conquistas">
+    <h3>Conquistas</h3>
+    <div class="tarefa">
+      <img src="Imagens/coroa.png" alt="">
+      <span>Faça login no site</span>
+      <img src="Imagens/certo.png" alt="">
+    </div>
+    <div class="tarefa">
+      <img src="Imagens/coroa.png" alt="">
+      <span>Faça uma lição</span>
+      <img src="Imagens/certo.png" alt="">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  </div>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const historia1Completada = localStorage.getItem('historia1_completa') === 'true';
+
+    if (historia1Completada) {
+      const tarefas = document.querySelectorAll('.painel-missoes .tarefa');
+
+      tarefas.forEach(tarefa => {
+        if (tarefa.textContent.includes('Complete uma história')) {
+          const img = tarefa.querySelector('img:last-child');
+          img.src = 'Imagens/certo.png';
+          img.alt = 'Certo';
+        }
+      });
+    }
+  });
+</script>
+</body>
+</html>
