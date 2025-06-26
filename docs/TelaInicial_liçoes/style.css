@@ -214,8 +214,8 @@ body {
 
 .estrela:hover {
   animation: float 2.5s ease-in-out infinite;
-  transform: scale(1.1);
-  box-shadow: 0 0 25px rgba(166, 120, 244, 0.8);
+  transform: scale(1.1) rotate(1deg);
+  filter: drop-shadow(0 0 10px rgba(166, 120, 244, 0.6));
   z-index: 10;
 }
 
